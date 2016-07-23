@@ -126,10 +126,7 @@ module.exports = function(app){
 	app.get('/chart1', function(req, res){
 		if (req.isAuthenticated()) {
 			ormdb.selectAll(req.user.userId, function(result){
-		           
-		            console.log('app.get: ')
-		            console.log(result[0].invName)
-		            
+		     
 		            res.render('chart1', {
 		            	chartvar: result
 		            });
@@ -143,8 +140,11 @@ module.exports = function(app){
 
 	app.get('/chart2', function(req, res){
 		if (req.isAuthenticated()) {
-			res.render('chart2', {
-				
+			ormdb.selectAll(req.user.userId, function(result){
+		            
+		            res.render('chart2', {
+		            	chartvar: result
+		            });
 			});
 		}
 		else {
